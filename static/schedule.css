@@ -1,0 +1,479 @@
+:root {
+    /* Light Theme Variables */
+    --clr-primary: #7380ec;
+    --clr-danger: #ff7782;
+    --clr-success: #41f1b6;
+    --clr-white: #fff;
+    --clr-info-dark: #7d8da1;
+    --clr-info-light: #dce1eb;
+    --clr-dark: #363949;
+    --clr-warning: #ff4edc;
+    --clr-light: rgba(132, 139, 200, 0.18);
+    --clr-primary-variant: #111e88;
+    --clr-dark-variant: #677483;
+    --clr-color-background: #f6f6f9;
+
+    /* Dark Theme Variables */
+    --clr-dark-primary: #6670e0;
+    --clr-dark-danger: #ff6b76;
+    --clr-dark-success: #3ae9a8;
+    --clr-dark-white: #202528;
+    --clr-dark-info-dark: #a3bdcc;
+    --clr-dark-info-light: #2d3241;
+    --clr-dark-dark: #edeffd;
+    --clr-dark-warning: #ff4edc;
+    --clr-dark-light: rgba(0, 0, 0, 0.4);
+    --clr-dark-primary-variant: #0e1a7a;
+    --clr-dark-dark-variant: #a3bdcc;
+    --clr-dark-color-background: #181a1e;
+
+    /* Common Variables */
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--clr-light);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--clr-color-background);
+    color: var(--clr-dark);
+    transition: all 300ms ease;
+}
+
+body.dark-theme {
+    --clr-primary: var(--clr-dark-primary);
+    --clr-danger: var(--clr-dark-danger);
+    --clr-success: var(--clr-dark-success);
+    --clr-white: var(--clr-dark-white);
+    --clr-info-dark: var(--clr-dark-info-dark);
+    --clr-info-light: var(--clr-dark-info-light);
+    --clr-dark: var(--clr-dark-dark);
+    --clr-warning: var(--clr-dark-warning);
+    --clr-light: var(--clr-dark-light);
+    --clr-primary-variant: var(--clr-dark-primary-variant);
+    --clr-dark-variant: var(--clr-dark-dark-variant);
+    --clr-color-background: var(--clr-dark-color-background);
+}
+
+.container {
+    width: 96%;
+    margin: 0 auto;
+    padding: var(--padding-1) 0;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    color: var(--clr-dark);
+    margin-bottom: 0.5rem;
+}
+
+#current-date {
+    color: var(--clr-info-dark);
+    font-size: 0.9rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--clr-info-light);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--clr-white);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--clr-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Card Styles */
+.card {
+    background: var(--clr-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    margin-bottom: 1.8rem;
+}
+
+.card:hover {
+    box-shadow: none;
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--clr-light);
+}
+
+.card-header h2 {
+    font-size: 1.2rem;
+    color: var(--clr-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-add {
+    background: var(--clr-primary);
+    color: var(--clr-white);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.btn-add:hover {
+    background: var(--clr-primary-variant);
+}
+
+/* List Styles */
+.appointments-list,
+.medication-list,
+.activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.appointments-list li,
+.medication-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--clr-light);
+}
+
+.appointments-list li:last-child,
+.medication-list li:last-child {
+    border-bottom: none;
+}
+
+.appointment-time,
+.medication-time {
+    width: 70px;
+    color: var(--clr-primary);
+    font-weight: 500;
+}
+
+.appointment-details,
+.medication-details {
+    flex: 1;
+}
+
+.appointment-details h3,
+.medication-details h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    color: var(--clr-dark);
+}
+
+.appointment-details p,
+.medication-details p {
+    font-size: 0.8rem;
+    color: var(--clr-info-dark);
+    margin: 0;
+}
+
+.btn-remind {
+    background: transparent;
+    border: none;
+    color: var(--clr-primary);
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Medication Status */
+.medication-status {
+    margin-left: 1rem;
+}
+
+.status-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--border-radius-1);
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.status-badge.taken {
+    background: rgba(65, 241, 182, 0.2);
+    color: var(--clr-success);
+}
+
+.status-badge.missed {
+    background: rgba(255, 119, 130, 0.2);
+    color: var(--clr-danger);
+}
+
+.status-badge.upcoming {
+    background: rgba(115, 128, 236, 0.2);
+    color: var(--clr-primary);
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.metric-card {
+    background: var(--clr-light);
+    padding: 1rem;
+    border-radius: var(--border-radius-2);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+    margin-bottom: 0.3rem;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: var(--clr-info-dark);
+    margin-bottom: 0.5rem;
+}
+
+.metric-trend {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.metric-trend.up {
+    color: var(--clr-success);
+}
+
+.metric-trend.down {
+    color: var(--clr-danger);
+}
+
+.metric-trend.stable {
+    color: var(--clr-info-dark);
+}
+
+/* Activities List */
+.activities-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--clr-light);
+}
+
+.activities-list li:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+}
+
+.activity-icon.success {
+    color: var(--clr-success);
+}
+
+.activity-icon.danger {
+    color: var(--clr-danger);
+}
+
+.activity-icon.primary {
+    color: var(--clr-primary);
+}
+
+.activity-details h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: var(--clr-dark);
+}
+
+.activity-details p {
+    font-size: 0.8rem;
+    color: var(--clr-info-dark);
+    margin: 0;
+}
+
+.activity-time {
+    font-size: 0.7rem;
+    color: var(--clr-info-dark);
+    margin-top: 0.3rem;
+    display: inline-block;
+}
+
+/* Grid Layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Overlay background for dimmed effect */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Popup form container */
+.popup {
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+/* Input styling */
+.popup input[type="text"],
+.popup input[type="time"],
+.popup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.popup textarea {
+  min-height: 80px;
+}
+
+
+/* Button styling */
+.popup button {
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Specific button types for clarity */
+.popup button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.popup button[type="button"] {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.popup button:hover {
+  opacity: 0.9;
+}
+
+/* Hide popup when not needed */
+.hidden {
+  display: none;
+}

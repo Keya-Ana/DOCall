@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Healthcare System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='med.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Medical Healthcare</h1>
+            <div class="theme-toggler">
+                <span class="active">🌞</span>
+                <span>🌙</span>
+            </div>
+        </div>
+
+        <div class="grid-container" id="articlesContainer"></div>
+        <div class="loading" id="loading">Loading medical data...</div>
+    </div>
+
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="{{ url_for('static', filename='med.js') }}"></script>
+</body>
+</html>

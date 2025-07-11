@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenwood Hospital - Staff Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='staff.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-hospital-alt"></i>
+                    <h1>Greenwood Hospital</h1>
+                </div>
+                <div class="theme-toggle">
+                    <button id="themeBtn">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#" data-section="doctors"><i class="fas fa-user-md"></i> Doctors</a></li>
+                    <li><a href="#" data-section="nurses"><i class="fas fa-user-nurse"></i> Nurses</a></li>
+                    <li><a href="#" data-section="support"><i class="fas fa-people-carry"></i> Support Staff</a></li>
+                    <li><a href="#" data-section="vendors"><i class="fas fa-truck"></i> Vendors</a></li>
+                    <li><a href="#" data-section="add"><i class="fas fa-plus-circle"></i> Add Staff</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="dashboard" class="content-section active">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                <div class="stats-container">
+                    <div class="stat-card doctor">
+                        <h3>Doctors</h3>
+                        <p id="doctorCount">0</p>
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-card nurse">
+                        <h3>Nurses</h3>
+                        <p id="nurseCount">0</p>
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <div class="stat-card support">
+                        <h3>Support Staff</h3>
+                        <p id="supportCount">0</p>
+                        <i class="fas fa-people-carry"></i>
+                    </div>
+                    <div class="stat-card vendor">
+                        <h3>Vendors</h3>
+                        <p id="vendorCount">0</p>
+                        <i class="fas fa-truck"></i>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3><i class="fas fa-history"></i> Recent Additions</h3>
+                    <div id="recentStaff" class="staff-grid"></div>
+                </div>
+            </section>
+
+            <section id="doctors" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-md"></i> Doctors</h2>
+                    <div class="search-filter">
+                        <input type="text" id="doctorSearch" placeholder="Search doctors...">
+                        <select id="doctorDepartment">
+                            <option value="">All Departments</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Oncology">Oncology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="General">General</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="doctorsList" class="staff-grid"></div>
+            </section>
+
+            <section id="nurses" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-nurse"></i> Nurses</h2>
+                    <div class="search-filter">
+                        <input type="text" id="nurseSearch" placeholder="Search nurses...">
+                        <select id="nurseWard">
+                            <option value="">All Wards</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="ICU">ICU</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Maternity">Maternity</option>
+                            <option value="General">General</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="nursesList" class="staff-grid"></div>
+            </section>
+
+            <section id="support" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-people-carry"></i> Support Staff</h2>
+                    <div class="search-filter">
+                        <input type="text" id="supportSearch" placeholder="Search support staff...">
+                        <select id="supportRole">
+                            <option value="">All Roles</option>
+                            <option value="Janitor">Janitor</option>
+                            <option value="Security">Security</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Administrative">Administrative</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="supportList" class="staff-grid"></div>
+            </section>
+
+            <section id="vendors" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-truck"></i> Vendors</h2>
+                    <div class="search-filter">
+                        <input type="text" id="vendorSearch" placeholder="Search vendors...">
+                        <select id="vendorType">
+                            <option value="">All Types</option>
+                            <option value="Medical Supplies">Medical Supplies</option>
+                            <option value="Pharmaceutical">Pharmaceutical</option>
+                            <option value="Food Service">Food Service</option>
+                            <option value="Equipment">Equipment</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="vendorsList" class="staff-grid"></div>
+            </section>
+
+            <section id="add" class="content-section">
+                <h2><i class="fas fa-plus-circle"></i> Add Staff Member</h2>
+                <form id="addStaffForm">
+                    <div class="form-group">
+                        <label for="staffType">Staff Type</label>
+                        <select id="staffType" required>
+                            <option value="">Select Staff Type</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Support">Support Staff</option>
+                            <option value="Vendor">Vendor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group" id="roleSpecificGroup">
+                        <!-- Dynamic fields based on staff type will appear here -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hireDate">Hire Date</label>
+                        <input type="date" id="hireDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">Photo URL</label>
+                        <input type="text" id="photo" placeholder="Optional image URL">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add Staff Member</button>
+                        <button type="reset" class="btn-secondary">Reset Form</button>
+                    </div>
+                </form>
+            </section>
+
+            <div id="staffModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Greenwood Hospital. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                <a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a>
+                <a href="#"><i class="fas fa-phone-alt"></i> Contact Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.js"></script>
+    <script src="{{ url_for('static', filename='staff-database.js') }}"></script>
+    <script src="{{ url_for('static', filename='staff.js') }}"></script>
+</body>
+</html>

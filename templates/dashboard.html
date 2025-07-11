@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-hospital"></i>
+                <h1>MedCare</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="{{ url_for('patients') }}"><i class="fas fa-procedures"></i> Patient-Records</a></li>
+                    <li><a href="{{ url_for('medReport') }}"><i class="fas fa-pills"></i> Medical Reports</a></li>
+                    <li><a href="{{ url_for('staff') }}" ><i class="fas fa-users-cog"></i> Staff</a></li>
+                    <li><a href="{{ url_for('analytics') }}"><i class="fas fa-file-medical"></i> Records</a></li>
+                    <li><a href="{{ url_for('notification') }}"><i class="fas fa-user-md"></i> Doc-Patient BOD</a></li>
+                    <li><a href="#" id="sign-out"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Admin">
+                <div>
+                    <h4>Dr. Sarah Johnson</h4>
+                    <p>Chief Medical Officer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search patients, doctors, medications...">
+                </div>
+                <div class="header-actions">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Admin">
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- Overview Cards -->
+                <div class="overview-cards">
+                    <div class="card">
+                        <div class="card-icon bg-blue">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Total Patients</h3>
+                            <h2>1,248</h2>
+                            <p><span class="text-success">+12</span> this week</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-green">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Active Doctors</h3>
+                            <h2>48</h2>
+                            <p><span class="text-success">+2</span> this month</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-orange">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Medications</h3>
+                            <h2>324</h2>
+                            <p><span class="text-danger">-5</span> low stock</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon bg-purple">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Today's Appointments</h3>
+                            <h2>86</h2>
+                            <p><span class="text-warning">12</span> pending</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard Sections -->
+                <div class="dashboard-sections">
+                    <!-- Patients Section -->
+                    <div class="section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-procedures"></i> Recent Patients</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="patients-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Name</th>
+                                        <th>Condition</th>
+                                        <th>Doctor</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#P-1001</td>
+                                        <td>
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient">
+                                            John Smith
+                                        </td>
+                                        <td>Hypertension</td>
+                                        <td>Dr. Lee</td>
+                                        <td><span class="badge bg-blue">Stable</span></td>
+                                        <td><button class="btn-view">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#P-1002</td>
+                                        <td>
+                                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient">
+                                            Maria Garcia
+                                        </td>
+                                        <td>Diabetes</td>
+                                        <td>Dr. Johnson</td>
+                                        <td><span class="badge bg-green">Recovering</span></td>
+                                        <td><button class="btn-view">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#P-1003</td>
+                                        <td>
+                                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Patient">
+                                            Robert Chen
+                                        </td>
+                                        <td>Pneumonia</td>
+                                        <td>Dr. Williams</td>
+                                        <td><span class="badge bg-orange">Critical</span></td>
+                                        <td><button class="btn-view">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#P-1004</td>
+                                        <td>
+                                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Patient">
+                                            Sarah Wilson
+                                        </td>
+                                        <td>Fracture</td>
+                                        <td>Dr. Brown</td>
+                                        <td><span class="badge bg-blue">Stable</span></td>
+                                        <td><button class="btn-view">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Doctors Chat Section -->
+                    <div class="section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-comment-medical"></i> Doctors Discussion</h2>
+                            <div class="chat-actions">
+                                <button class="btn-new-chat"><i class="fas fa-plus"></i> New Discussion</button>
+                            </div>
+                        </div>
+                        <div class="chat-container">
+                            <div class="chat-sidebar">
+                                <div class="chat-search">
+                                    <input type="text" placeholder="Search discussions...">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="chat-list">
+                                    <div class="chat-item active">
+                                        <div class="chat-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="chat-info">
+                                            <h4>Patient Case #P-1003</h4>
+                                            <p>Dr. Williams: Need consultation on pneumonia treatment...</p>
+                                            <span class="chat-time">10:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-avatar">
+                                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="chat-info">
+                                            <h4>New Protocol Discussion</h4>
+                                            <p>Dr. Johnson: Let's discuss the new ICU protocols...</p>
+                                            <span class="chat-time">Yesterday</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <div class="chat-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="chat-info">
+                                            <h4>Medication Alert</h4>
+                                            <p>Dr. Lee: Important update on drug interactions...</p>
+                                            <span class="chat-time">2 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-window">
+                                <div class="chat-header">
+                                    <div class="chat-title">
+                                        <h3>Patient Case #P-1003 - Robert Chen</h3>
+                                        <p>Pneumonia Treatment Discussion</p>
+                                    </div>
+                                    <div class="chat-participants">
+                                        <span>Participants: Dr. Williams, Dr. Johnson, You</span>
+                                    </div>
+                                </div>
+                                <div class="chat-messages">
+                                    <div class="message">
+                                        <div class="message-avatar">
+                                            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="message-content">
+                                            <div class="message-header">
+                                                <h4>Dr. Williams</h4>
+                                                <span>10:30 AM</span>
+                                            </div>
+                                            <p>Hello team, I need some advice on Robert Chen's pneumonia treatment. His condition isn't improving with the current antibiotics. Any suggestions?</p>
+                                        </div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message-avatar">
+                                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="message-content">
+                                            <div class="message-header">
+                                                <h4>Dr. Johnson</h4>
+                                                <span>10:35 AM</span>
+                                            </div>
+                                            <p>Have you considered switching to azithromycin? The recent lab results show possible resistance to the current medication.</p>
+                                        </div>
+                                    </div>
+                                    <div class="message">
+                                        <div class="message-avatar">
+                                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Doctor">
+                                        </div>
+                                        <div class="message-content">
+                                            <div class="message-header">
+                                                <h4>You</h4>
+                                                <span>10:38 AM</span>
+                                            </div>
+                                            <p>I agree with Dr. Johnson. Also, we should consider adding a corticosteroid to reduce inflammation. His oxygen levels are concerning.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" placeholder="Type your message...">
+                                    <div class="chat-tools">
+                                        <i class="fas fa-paperclip"></i>
+                                        <i class="fas fa-microphone"></i>
+                                        <button class="btn-send">Send <i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='dash.js') }}"></script>
+</body>
+</html>
