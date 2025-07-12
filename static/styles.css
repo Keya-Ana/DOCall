@@ -76,7 +76,11 @@ body.dark-theme {
 
 .login-left {
     flex: 1;
-    background: var(--clr-primary);
+    background: url(../static/home.jpeg), rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: darken;
     color: var(--clr-white);
     padding: var(--card-padding);
     display: flex;
@@ -96,6 +100,10 @@ body.dark-theme {
 .brand-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+.brand-text {
+    color: #fff !important;
 }
 
 .login-left h1 {
@@ -429,13 +437,11 @@ input:checked + .slider:before {
         gap: 0.5rem;
     }
 }
-.messageDiv{
-    background-color: hsl(327, 90%, 28%);
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    font-size: 1rem;
-    opacity: 0;
-    animation: fadeout 7s forwards;
-}
+
+.logo {
+    position: absolute;
+    top: 10px; /* Distance from the bottom */
+    left: 10px;  /* Distance from the right */
+    width: 200px; /* Set the size of the logo */
+    height: auto;
+  }

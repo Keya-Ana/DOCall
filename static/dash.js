@@ -34,23 +34,36 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // ✅ Logout event handler
-document.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.getElementById("sign-out");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      signOut(auth)
-        .then(() => {
-          // Redirect to login on successful sign out
-          window.location.href = "../loginpage/login.html";
-        })
-        .catch((error) => {
-          console.error("Logout failed:", error);
-        });
-    });
-  }
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   const logoutBtn = document.getElementById("sign-out");
+//   if (logoutBtn) {
+//     logoutBtn.addEventListener("click", (e) => {
+//       e.preventDefault();
+//       signOut(auth)
+//         .then(() => {
+//           // Redirect to login on successful sign out
+//           window.location.href = "../loginpage/login.html";
+//         })
+//         .catch((error) => {
+//           console.error("Logout failed:", error);
+//         });
+//     });
+//   }
+// });
 
+logoutBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  signOut(auth)
+    .then(() => {
+      fetch('/logout')  // Flask session cleared
+        .then(() => {
+          window.location.href = "../loginpage/login.html";
+        });
+    })
+    .catch((error) => {
+      console.error("Logout failed:", error);
+    });
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -232,3 +245,4 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('You have 3 new notifications:\n1. New lab results for Patient #P-1002\n2. Medication low stock alert\n3. Staff meeting reminder');
     });
 });
+
